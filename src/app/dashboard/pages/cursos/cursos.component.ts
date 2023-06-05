@@ -5,9 +5,9 @@ import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
 import { Observable, Subscription } from 'rxjs';
-import { InscripcionesService } from '../inscripciones/services/inscripciones.service';
+//import { InscripcionesService } from '../inscripciones/services/inscripciones.service';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
-import { Inscripicion } from '../inscripciones/models';
+import { Inscripcion } from '../inscripciones/models';
 
 @Component({
   selector: 'app-cursos',
@@ -32,7 +32,7 @@ export class CursosComponent implements OnInit, OnDestroy {
   constructor(
     private cursosService: CursosService,
     private dialog: MatDialog,
-    private InscripcionesService: InscripcionesService
+    //private InscripcionesService: InscripcionesService
   ) {
   }
   ngOnDestroy(): void {
@@ -82,14 +82,14 @@ export class CursosComponent implements OnInit, OnDestroy {
     const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
-
+/*
   irAlDetalle(cursoId: number): void {
     this.cursosService
       .getCursoById(cursoId)
       .subscribe((element: Curso | undefined) => {
         this.InscripcionesService
           .getInscipcionesDeCurso(element!.id)
-          .subscribe((res: Inscripicion[] | undefined) => {
+          .subscribe((res: Inscripcion[] | undefined) => {
             let inscs = res;
             const dialog = this.dialog.open(CursoDetalleComponent, {
               //en editar envío data
@@ -104,6 +104,7 @@ export class CursosComponent implements OnInit, OnDestroy {
   }).unsubscribe();
       
   }
+  */
 
 }
 export { Curso };

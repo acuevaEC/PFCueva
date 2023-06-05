@@ -40,14 +40,14 @@
     },
     {
       "nombre": "Javascript",
-      "fecha_inicio": "2023-06-06T05:00:00.000Z",
+      "fecha_inicio": "2023-07-07T05:00:00.000Z",
       "fecha_fin": "2023-08-31T05:00:00.000Z",
       "id": 4
     }
   ],
   "inscriptions": [
     {
-      "id": 2,
+      "id": 1,
       "studentId": 1,
       "courseId": 2
     },
@@ -57,12 +57,12 @@
       "id": 3
     },
     {
-      "studentId": 3,
-      "courseId": 1,
+      "studentId": 1,
+      "courseId": 2,
       "id": 4
     },
     {
-      "studentId": 1,
+      "studentId": 2,
       "courseId": 2,
       "id": 5
     }
@@ -75,9 +75,15 @@
       "fecha_registro": "2023-05-27T01:27:59.631Z"
     },
     {
+      "id": 2,
+      "nombre": "Matias",
+      "apellido": "Orbe",
+      "fecha_registro": "2023-05-27T01:27:59.631Z"
+    },
+    {
       "id": 1,
       "nombre": "Juan",
-      "apellido": "Oleas",
+      "apellido": "Oleas Orbe",
       "fecha_registro": "2023-05-27T01:27:59.631Z"
     }
   ]

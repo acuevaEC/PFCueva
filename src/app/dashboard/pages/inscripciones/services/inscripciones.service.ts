@@ -1,6 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Curso, Alumno, Inscripicion} from '../models';
+import { Curso, Alumno, Inscripcion } from '../models';
 import { BehaviorSubject, Observable, map, take } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { InscripcionWithAll } from '../models/index';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InscripcionesService {
+  constructor(private httpCliente: HttpClient) {}
+
+  getAllInscripciones(): Observable<InscripcionWithAll[]> {
+    return this.httpCliente.get<InscripcionWithAll[]>(
+      `http://localhost:3000/inscriptions?_expand=course&_expand=student`
+    );
+  }
+
+  deleteInscripcionById(id: number): Observable<unknown> {
+    return this.httpCliente.delete(
+      `http://localhost:3000/inscriptions/${id}`
+    );
+  }
+}
+
+/*
 
 // CURSOS, ALUMNOS E INSCRIPCIOENS MOCKS //
 
@@ -46,7 +69,7 @@ const ALUMNO_MOCKS: Alumno[] = [
   },
 ];
 
-const INSCRIPICIONES_MOCK: Inscripicion[] = [
+const INSCRIPICIONES_MOCK: Inscripcion[] = [
   {
     id: 1,
     alumno: ALUMNO_MOCKS.at(0)!,
@@ -89,20 +112,20 @@ const INSCRIPICIONES_MOCK: Inscripicion[] = [
 
 export class InscripcionesService {
 
-  private inscripciones$ = new BehaviorSubject<Inscripicion[]>(
+  private inscripciones$ = new BehaviorSubject<Inscripcion[]>(
     INSCRIPICIONES_MOCK
   );
   constructor() { 
     //private alumno
   }
 
-  getInscripciones(): Observable<Inscripicion[]> {
+  getInscripciones(): Observable<Inscripcion[]> {
     return this.inscripciones$.asObservable();
   }
 
   getInscipcionesDeAlumnos(
     AlumnoId: number
-  ): Observable<Inscripicion[] | undefined> {
+  ): Observable<Inscripcion[] | undefined> {
     return this.inscripciones$.pipe(
       map((Inscripciones: any[]) =>
         Inscripciones.filter((a: { alumno: { id: number; }; }) => a.alumno.id == AlumnoId)
@@ -112,13 +135,13 @@ export class InscripcionesService {
 
   getInscipcionesDeCurso(
     cursoId: number
-  ): Observable<Inscripicion[] | undefined> {
+  ): Observable<Inscripcion[] | undefined> {
     return this.inscripciones$.pipe(
       map((Inscripciones) => Inscripciones.filter((a) => a.curso.id == cursoId))
     );
   }
 
-  eliminarInscripcion(inscripcionId: number): Observable<Inscripicion[]> {
+  eliminarInscripcion(inscripcionId: number): Observable<Inscripcion[]> {
     this.inscripciones$.pipe(take(1)).subscribe({
       next: (inscripciones) => {
         
@@ -136,8 +159,8 @@ export class InscripcionesService {
 
   editarInscripcion(
     inscripcionId: number,
-    actualizacion: Partial<Inscripicion>
-  ): Observable<Inscripicion[]> {
+    actualizacion: Partial<Inscripcion>
+  ): Observable<Inscripcion[]> {
     this.inscripciones$.pipe(take(1)).subscribe({
       next: (inscripciones) => {
         const inscripcionesActualizados = inscripciones.map((inscripcion) => {
@@ -163,3 +186,4 @@ export class InscripcionesService {
 
   
 }
+*/

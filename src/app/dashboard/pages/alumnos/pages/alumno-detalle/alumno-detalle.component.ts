@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlumnosService } from '../../services/alumnos.service';
 import { Alumno } from '../../alumnos.component';
 import { Subject, takeUntil } from 'rxjs';
-import { Inscripicion } from '../../../inscripciones/models';
+import { Inscripcion } from '../../../inscripciones/models';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -14,7 +14,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AlumnoDetalleComponent implements OnDestroy {
 
   alumno: Alumno | undefined;
-  inscripciones: Inscripicion[] | undefined = undefined;
+  inscripciones: Inscripcion[] | undefined = undefined;
   
 
   private destroyed$ = new Subject()

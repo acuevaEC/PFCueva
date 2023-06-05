@@ -5,7 +5,6 @@ export interface Curso {
     fecha_fin: Date;
   }
 
-
   export interface Alumno {
     id: number,
     nombre: string,
@@ -13,9 +12,23 @@ export interface Curso {
     fecha_registro: Date;
   }
 
-  
-  export interface Inscripicion {
+    export interface Inscripcion {
     id: number;
     alumno: Alumno;
     curso: Curso;
   }
+
+  export interface InscripcionWithStudent extends Inscripcion {
+    student: Alumno;
+  }
+   
+  export interface InscripcionWithCourse extends Inscripcion {
+    course: Curso;
+  }
+  
+  export interface CreateInscripcionData {
+    studentId: number;
+    courseId: number;
+  }
+  
+  export type InscripcionWithAll = InscripcionWithStudent & InscripcionWithCourse;
