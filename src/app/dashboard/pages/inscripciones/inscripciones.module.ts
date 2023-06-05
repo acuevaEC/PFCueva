@@ -15,6 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { EffectsModule } from '@ngrx/effects';
 import { InscripcionesEffects } from './store/inscripciones.effects';
+import { StoreModule } from '@ngrx/store';
+import { inscripcionesFeature } from './store/inscripciones.reducer';
 
 
 
@@ -42,6 +44,7 @@ import { InscripcionesEffects } from './store/inscripciones.effects';
         component: InscripcionesComponent
       }
     ]),
+    StoreModule.forFeature(inscripcionesFeature),
     EffectsModule.forFeature([InscripcionesEffects])
   ]
 })

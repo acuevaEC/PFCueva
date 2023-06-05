@@ -40,7 +40,7 @@ export class AuthService {
   login(formValue: LoginFormValue): void {
 
     this.httpClient.get<Usuario[]>(
-      `http://localhost:3000/usuarios`,
+      `http://localhost:3000/users`,
       {
         params: {
           ...formValue
@@ -70,7 +70,7 @@ export class AuthService {
   verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return this.httpClient.get<Usuario[]>(
-      `http://localhost:3000/usuarios?token=${token}`,
+      `http://localhost:3000/users?token=${token}`,
       {
         headers: new HttpHeaders({
           'Authorization': token || '',

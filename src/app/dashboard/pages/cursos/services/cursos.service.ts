@@ -31,7 +31,7 @@ export class CursosService {
 
 // LISTAR CURSOS //
 obtenerCursos(): Observable<Curso[]> {
-  return this.httpClient.get<Curso[]>(`http://localhost:3000/cursos`)
+  return this.httpClient.get<Curso[]>(`http://localhost:3000/courses`)
     .pipe(
       tap((cursos) => this.cursos$.next(cursos)),
       mergeMap(() => this.cursos$.asObservable())
@@ -59,7 +59,7 @@ obtenerCursos(): Observable<Curso[]> {
         complete: () => {},
         error: () => {}
       })
-      this.httpClient.post<Curso[]>(`http://localhost:3000/cursos`,payload).subscribe()
+      this.httpClient.post<Curso[]>(`http://localhost:3000/courses`,payload).subscribe()
     return this.cursos$.asObservable();
   }
 
@@ -69,7 +69,7 @@ obtenerCursos(): Observable<Curso[]> {
   editarCurso(cursoId: number, actualizacion: Partial<Curso>): Observable<Curso[]> {
     let cursosActualizados: Curso[]=[]
     let numeral: number=0
-    let cadena: String = 'http://localhost:3000/cursos/'
+    let cadena: String = 'http://localhost:3000/courses/'
     let nombre: String =''
     this.cursos$
       .pipe(
@@ -107,7 +107,7 @@ obtenerCursos(): Observable<Curso[]> {
 // ELIMINAR CURSO //
 
   eliminarCurso(cursoId: number): Observable<Curso[]> {
-    let cadena: String = 'http://localhost:3000/cursos/'
+    let cadena: String = 'http://localhost:3000/courses/'
    
     this.cursos$
     .pipe(
