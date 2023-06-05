@@ -11,6 +11,12 @@ export interface Curso {
     apellido: string,
     fecha_registro: Date;
   }
+  export interface CrearAlumnoPayload {
+    id: number,
+    nombre: string,
+    apellido: string,
+    fecha_registro: Date;
+  }
 
     export interface Inscripcion {
     id: number;

@@ -1,47 +1,39 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map, take } from 'rxjs';
 import { Alumno } from '../alumnos.component';
+import { HttpClient } from '@angular/common/http';
+import { CrearAlumnoPayload } from '../../inscripciones/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosService {
+  
+  private alumnos$ = new BehaviorSubject<Alumno[]>(
+    []
+  );
 
-  // Subject
-  private estudiantes2$ = new Subject<Alumno[]>();
+  constructor(private httpcliente: HttpClient) { }
 
-  // BehaviorSubject
-  private estudiantes$ = new BehaviorSubject<Alumno[]>([
-    {
-      id: 1,
-      nombre: 'Juan',
-      apellido: 'Sosa',
-      fecha_registro: new Date()
-    },
-    {
-      id: 2,
-      nombre: 'Miriam',
-      apellido: 'Paez',
-      fecha_registro: new Date()
-    },
-    {
-      id: 3,
-      nombre: 'Cynthia',
-      apellido: 'Coronel',
-      fecha_registro: new Date()
-    },
-  ])
-
-  constructor() { }
 
   obtenerAlumnos(): Observable<Alumno[]> {
-    return this.estudiantes$.asObservable();
+    //return this.estudiantes$.asObservable();
+    return this.httpcliente.get<Alumno[]>(`http://localhost:3000/students`)
   }
 
-  obtenerAlumnoPorId(id: number): Observable<Alumno | undefined> {
-    return this.estudiantes$.asObservable()
-      .pipe(
-        map((alumnos) => alumnos.find((a) => a.id === id))
-      )
+
+  obtenerAlumnoPorId(id: number): Observable<Alumno| undefined> {
+    return this.httpcliente.get<Alumno>(`http://localhost:3000/students?id=${id}`)
   }
+  
+  crearAlumno(payload: CrearAlumnoPayload): void {
+    const body = {
+      nombre: payload.nombre,
+      apellido: payload.apellido,
+      fecha_registro: new Date(),
+    };
+    
+    this.httpcliente.post<Alumno>(`http://localhost:3000/students`,body).subscribe()
+  }
+  
 }

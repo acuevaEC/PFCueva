@@ -99,7 +99,7 @@ obtenerCursos(): Observable<Curso[]> {
         error: () => {}
       });
       
-     console.log(cursosActualizados[numeral-1])
+     
       this.httpClient.put<Curso[]>(cadena.toString(),cursosActualizados[numeral-1]).subscribe()
     return this.cursos$.asObservable();
   }

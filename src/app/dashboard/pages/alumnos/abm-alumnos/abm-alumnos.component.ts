@@ -32,6 +32,7 @@ export class AbmAlumnosComponent {
     if (this.alumnosForm.valid) {
       this.dialogRef.close(this.alumnosForm.value)
     } else {
+      
       this.alumnosForm.markAllAsTouched();
     }
   }
